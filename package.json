@@ -1,0 +1,26 @@
+{
+  "name": "job-search-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c blue,green \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm --workspace @job-search-agent/api run dev",
+    "dev:web": "npm --workspace @job-search-agent/web run dev",
+    "build": "npm run build:api && npm run build:web",
+    "build:api": "npm --workspace @job-search-agent/api run build",
+    "build:web": "npm --workspace @job-search-agent/web run build",
+    "test": "npm --workspace @job-search-agent/api run test",
+    "check": "npm run build && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "concurrently": "10.0.6",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  }
+}
